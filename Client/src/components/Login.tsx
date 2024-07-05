@@ -24,174 +24,167 @@ const LoginForm: React.FC = () => {
 
   const handleSignInSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Example validation
     if (!signInData.email || !signInData.password) {
       setSignInError("Email and password are required");
       return;
     }
-    // Handle sign in logic
     console.log("Signing in with:", signInData);
     setSignInError("");
   };
 
   const handleSignUpSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Example validation
     if (!signUpData.name || !signUpData.email || !signUpData.password) {
       setSignUpError("All fields are required");
       return;
     }
-    // Handle sign up logic
     console.log("Signing up with:", signUpData);
     setSignUpError("");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-[60rem] bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-3 max-w-md w-full">
-        <div className="flex justify-around mb-4">
-          <button
-            className={`py-2 px-4 rounded-md ${
-              activeTab === "signIn"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={() => setActiveTab("signIn")}
-          >
-            Sign In
-          </button>
-          <button
-            className={`py-2 px-4 rounded-md ${
-              activeTab === "signUp"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={() => setActiveTab("signUp")}
-          >
-            Sign Up
-          </button>
-        </div>
-
-        {activeTab === "signIn" ? (
-          <form onSubmit={handleSignInSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-gray-700 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={signInData.email}
-                onChange={handleSignInChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Enter your email"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-4xl flex flex-wrap">
+        <div className="w-full sm:w-1/2 p-4">
+          <h2 className="text-center text-2xl font-bold mb-4">
+            {activeTab === "signIn" ? "Sign In" : "Sign Up"}
+          </h2>
+          {activeTab === "signIn" ? (
+            <form onSubmit={handleSignInSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-gray-700 mb-2">
+                  Email
+                </label>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  value={signInData.password}
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={signInData.email}
                   onChange={handleSignInChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="Enter your password"
+                  placeholder="Enter your email"
                 />
-                <button
-                  type="button"
-                  className="absolute right-2 top-2 text-gray-500"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? "🙈" : "👁️"}
-                </button>
               </div>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              Sign In
-            </button>
-
-            {signInError && (
-              <p className="text-xs text-red-500 mt-2">{signInError}</p>
-            )}
-          </form>
-        ) : (
-          <form onSubmit={handleSignUpSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-gray-700 mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={signUpData.name}
-                onChange={handleSignUpChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Enter your name"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-gray-700 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={signUpData.email}
-                onChange={handleSignUpChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Enter your email"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
+              <div>
+                <label htmlFor="password" className="block text-gray-700 mb-2">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={signInData.password}
+                    onChange={handleSignInChange}
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-2 top-2 text-gray-500"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </button>
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                Sign In
+              </button>
+              {signInError && (
+                <p className="text-xs text-red-500 mt-2">{signInError}</p>
+              )}
+            </form>
+          ) : (
+            <form onSubmit={handleSignUpSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-gray-700 mb-2">
+                  Name
+                </label>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  value={signUpData.password}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={signUpData.name}
                   onChange={handleSignUpChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  placeholder="Enter your password"
+                  placeholder="Enter your name"
                 />
-                <button
-                  type="button"
-                  className="absolute right-2 top-2 text-gray-500"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? "🙈" : "👁️"}
-                </button>
               </div>
-            </div>
-
+              <div>
+                <label htmlFor="email" className="block text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={signUpData.email}
+                  onChange={handleSignUpChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-gray-700 mb-2">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={signUpData.password}
+                    onChange={handleSignUpChange}
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-2 top-2 text-gray-500"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </button>
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                Sign Up
+              </button>
+              {signUpError && (
+                <p className="text-xs text-red-500 mt-2">{signUpError}</p>
+              )}
+            </form>
+          )}
+        </div>
+        <div className="w-full sm:w-1/2 p-4 flex justify-center items-center bg-blue-500 text-white rounded-lg">
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              Welcome Back!
+            </h2>
+            <p className="mb-4 text-center">
+              To keep connected with us please login with your personal info.
+            </p>
             <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onClick={() =>
+                setActiveTab((prev) =>
+                  prev === "signIn" ? "signUp" : "signIn"
+                )
+              }
+              className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
-              Sign Up
+              {activeTab === "signIn"
+                ? "Switch to Sign Up"
+                : "Switch to Sign In"}
             </button>
-
-            {signUpError && (
-              <p className="text-xs text-red-500 mt-2">{signUpError}</p>
-            )}
-          </form>
-        )}
+          </div>
+        </div>
       </div>
     </div>
   );
