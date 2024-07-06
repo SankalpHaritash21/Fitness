@@ -164,25 +164,27 @@ const LoginForm: React.FC = () => {
           )}
         </div>
         <div className="w-full sm:w-1/2 p-4 flex justify-center items-center bg-blue-500 text-white rounded-lg">
-          <div>
+          <div className="flex justify-center flex-col">
             <h2 className="text-2xl font-bold mb-4 text-center">
               Welcome Back!
             </h2>
             <p className="mb-4 text-center">
               To keep connected with us please login with your personal info.
             </p>
-            <button
-              onClick={() =>
-                setActiveTab((prev) =>
-                  prev === "signIn" ? "signUp" : "signIn"
-                )
-              }
-              className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              {activeTab === "signIn"
-                ? "Switch to Sign Up"
-                : "Switch to Sign In"}
-            </button>
+            <div className="w-full flex justify-center">
+              <button
+                onClick={() =>
+                  setActiveTab((prev) =>
+                    prev === "signIn" ? "signUp" : "signIn"
+                  )
+                }
+                className="bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 w-[10rem]"
+              >
+                {activeTab === "signIn"
+                  ? "Switch to Sign Up"
+                  : "Switch to Sign In"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
